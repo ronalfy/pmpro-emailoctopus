@@ -7,6 +7,8 @@
 
 namespace PMProEmailOctopus\Includes;
 
+use PMProEmailOctopus\Includes\Options as Options;
+
 /**
  * Class Admin
  */
@@ -56,14 +58,11 @@ class Admin {
 	 */
 	public function init_admin_settings() {
 		$args = array(
-			'type'              => 'string',
-			'sanitize_callback' => 'sanitize_text_field',
-			'default'           => '',
 		);
 		register_setting(
 			'pmpro-emailoctopus',
 			'pmpro-emailoctopus',
-			$args,
+			$args
 		);
 		add_settings_section(
 			'pmpro-emailoctopus-api-key',
@@ -373,8 +372,9 @@ class Admin {
 	 * @param array $args Setting arguments.
 	 */
 	public function add_settings_field_api_key( $args = array() ) {
+		$options = Options::get_options();
 		printf( '<p>%s</p>', esc_html( $args['desc'] ) );
-		printf( '<input id="%s" class="regular-text" type="text" name="pmpro-emailoctopus[api_key]" value="%s" />', esc_attr( $args['label_for'] ), esc_attr( '' ) );
+		printf( '<input id="%s" class="regular-text" type="text" name="pmpro-emailoctopus[api_key]" value="%s" />', esc_attr( $args['label_for'] ), esc_attr( $options['api_key'] ) );
 	}
 
 	/**
