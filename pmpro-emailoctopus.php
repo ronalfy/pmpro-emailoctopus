@@ -72,6 +72,10 @@ class PMPro_EmailOctopus {
 		// Create the admin interface.
 		$this->admin = new PMProEmailOctopus\Includes\Admin();
 		$this->admin->run();
+
+		// Create the front-end interface.
+		$this->frontend = new PMProEmailOctopus\Includes\Frontend();
+		$this->frontend->run();
 	}
 }
 PMPro_EmailOctopus::get_instance();

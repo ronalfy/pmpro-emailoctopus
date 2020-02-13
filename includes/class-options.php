@@ -39,8 +39,8 @@ class Options {
 		}
 
 		$defaults = array(
-			'api_key' => '',
-			'user_lists'   => array(),
+			'api_key'    => '',
+			'user_lists' => array(),
 		);
 
 		if ( empty( $options ) || count( $options ) < count( $defaults ) ) {

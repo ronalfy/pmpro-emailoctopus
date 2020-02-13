@@ -86,84 +86,6 @@ class Admin {
 			'pmpro-emailoctopus'
 		);
 
-		/*
-		add_settings_section(
-			'has-config',
-			_x( 'Content', 'plugin settings heading', 'highlight-and-share' ),
-			array( $this, 'settings_section' ),
-			'highlight-and-share'
-		);
-
-		add_settings_section(
-			'has-twitter',
-			_x( 'Twitter Settings', 'plugin settings heading', 'highlight-and-share' ),
-			array( $this, 'settings_section' ),
-			'highlight-and-share'
-		);
-
-		add_settings_section(
-			'has-facebook',
-			_x( 'Facebook Settings', 'plugin settings heading', 'highlight-and-share' ),
-			array( $this, 'settings_section' ),
-			'highlight-and-share'
-		);
-
-		add_settings_section(
-			'has-linkedin',
-			_x( 'LinkedIn Settings', 'plugin settings heading', 'highlight-and-share' ),
-			array( $this, 'settings_section' ),
-			'highlight-and-share'
-		);
-
-		add_settings_section(
-			'has-pinterest',
-			_x( 'Pinterest Settings', 'plugin settings heading', 'highlight-and-share' ),
-			array( $this, 'settings_section' ),
-			'highlight-and-share'
-		);
-
-		add_settings_section(
-			'has-whatsapp',
-			_x( 'WhatsApp Settings', 'plugin settings heading', 'highlight-and-share' ),
-			array( $this, 'settings_section' ),
-			'highlight-and-share'
-		);
-
-		add_settings_section(
-			'has-xing',
-			_x( 'Xing Settings', 'plugin settings heading', 'highlight-and-share' ),
-			array( $this, 'settings_section' ),
-			'highlight-and-share'
-		);
-
-		add_settings_section(
-			'has-copy',
-			_x( 'Copy Settings', 'plugin settings heading', 'highlight-and-share' ),
-			array( $this, 'settings_section' ),
-			'highlight-and-share'
-		);
-
-		add_settings_section(
-			'has-email',
-			_x( 'E-mail Settings', 'plugin settings heading', 'highlight-and-share' ),
-			array( $this, 'settings_section' ),
-			'highlight-and-share'
-		);
-
-		add_settings_section(
-			'has-shortlink',
-			_x( 'Post URL Settings', 'plugin settings heading', 'highlight-and-share' ),
-			array( $this, 'settings_section' ),
-			'highlight-and-share'
-		);
-
-		add_settings_section(
-			'has-advanced',
-			_x( 'Advanced', 'plugin settings heading', 'highlight-and-share' ),
-			array( $this, 'settings_section' ),
-			'highlight-and-share'
-		);
-		*/
 		add_settings_field(
 			'pmpro-emailoctopus-api-key',
 			__( 'Enter your EmailOctopus API Key', 'pmpro-emailoctopus' ),
@@ -177,192 +99,11 @@ class Admin {
 		);
 		add_settings_field(
 			'pmpro-emailoctopus-user-lists',
-			__( 'Non-member Users', 'pmpro-emailoctopus' ),
+			__( 'Select EmailOctopus Lists', 'pmpro-emailoctopus' ),
 			array( $this, 'add_settings_field_output_lists' ),
 			'pmpro-emailoctopus',
 			'pmpro-emailoctopus-general'
 		);
-		/*
-		add_settings_field(
-			'hightlight-and-share-display-theme',
-			__( 'Choose Theme', 'highlight-and-share' ),
-			array( $this, 'add_settings_field_display_theme' ),
-			'highlight-and-share',
-			'has-display',
-			array(
-				'desc' => __( 'Choose a theme to display on the front-end. Some themes require Show Icons Only to be enabled.', 'highlight-and-share' ),
-			)
-		);
-
-		add_settings_field(
-			'hightlight-and-share-content-enable',
-			__( 'Add to Post Content', 'highlight-and-share' ),
-			array( $this, 'add_settings_field_content_enable' ),
-			'highlight-and-share',
-			'has-config',
-			array(
-				'desc' => __( 'Would you like to add sharing to the main content areas?', 'highlight-and-share' ),
-			)
-		);
-
-		add_settings_field(
-			'hightlight-and-share-excerpt-enable',
-			__( 'Add to Excerpt Content', 'highlight-and-share' ),
-			array( $this, 'add_settings_field_excerpt_enable' ),
-			'highlight-and-share',
-			'has-config',
-			array(
-				'desc' => __( 'Would you like to add sharing to the excerpts?', 'highlight-and-share' ),
-			)
-		);
-
-		add_settings_field(
-			'hightlight-and-share-twitter-enable',
-			__( 'Show Twitter Option', 'highlight-and-share' ),
-			array( $this, 'add_settings_field_twitter_enable' ),
-			'highlight-and-share',
-			'has-twitter',
-			array(
-				'desc' => __( 'Would you like to enable sharing via Twitter?', 'highlight-and-share' ),
-			)
-		);
-
-		add_settings_field(
-			'hightlight-and-share-linkedin-enable',
-			__( 'Show LinkedIn Option', 'highlight-and-share' ),
-			array( $this, 'add_settings_field_linkedin_enable' ),
-			'highlight-and-share',
-			'has-linkedin',
-			array(
-				'desc' => __( 'Would you like to enable sharing via LinkedIn?', 'highlight-and-share' ),
-			)
-		);
-
-		add_settings_field(
-			'hightlight-and-share-pinterest-enable',
-			__( 'Show Pinterest Option', 'highlight-and-share' ),
-			array( $this, 'add_settings_field_pinterest_enable' ),
-			'highlight-and-share',
-			'has-pinterest',
-			array(
-				'desc' => __( 'Would you like to enable sharing via Pinterest?', 'highlight-and-share' ),
-			)
-		);
-
-		add_settings_field(
-			'hightlight-and-share-whatsapp-enable',
-			__( 'Show WhatsApp Option', 'highlight-and-share' ),
-			array( $this, 'add_settings_field_whatsapp_enable' ),
-			'highlight-and-share',
-			'has-whatsapp',
-			array(
-				'desc' => __( 'Would you like to enable sharing via WhatsApp?', 'highlight-and-share' ),
-			)
-		);
-
-		add_settings_field(
-			'hightlight-and-share-xing-enable',
-			__( 'Show Xing Option', 'highlight-and-share' ),
-			array( $this, 'add_settings_field_xing_enable' ),
-			'highlight-and-share',
-			'has-xing',
-			array(
-				'desc' => __( 'Would you like to enable sharing via Xing?', 'highlight-and-share' ),
-			)
-		);
-
-		add_settings_field(
-			'hightlight-and-share-copy-enable',
-			__( 'Show Copy Option', 'highlight-and-share' ),
-			array( $this, 'add_settings_field_copy_enable' ),
-			'highlight-and-share',
-			'has-copy',
-			array(
-				'desc' => __( 'Would you like to enable sharing via copying?', 'highlight-and-share' ),
-			)
-		);
-
-		add_settings_field(
-			'hightlight-and-share-email-enable',
-			__( 'Show E-mail Option', 'highlight-and-share' ),
-			array( $this, 'add_settings_field_email_enable' ),
-			'highlight-and-share',
-			'has-email',
-			array(
-				'desc' => __( 'Would you like to enable sharing via E-mail?', 'highlight-and-share' ),
-			)
-		);
-
-		add_settings_field(
-			'hightlight-and-share-twitter-handle',
-			__( 'Twitter Username', 'highlight-and-share' ),
-			array( $this, 'add_settings_field_twitter' ),
-			'highlight-and-share',
-			'has-twitter',
-			array(
-				'label_for' => 'hightlight-and-share-twitter-handle',
-				'desc'      => __( 'Enter Your Twitter Username', 'highlight-and-share' ),
-			)
-		);
-
-		add_settings_field(
-			'hightlight-and-share-facebook-enable',
-			__( 'Show Facebook Option', 'highlight-and-share' ),
-			array( $this, 'add_settings_field_facebook_enable' ),
-			'highlight-and-share',
-			'has-facebook',
-			array(
-				'desc' => __( 'Would you like to enable sharing via Facebook?', 'highlight-and-share' ),
-			)
-		);
-
-		add_settings_field(
-			'hightlight-and-share-facebook-api',
-			__( 'Facebook App ID', 'highlight-and-share' ),
-			array( $this, 'add_settings_field_facebook_api' ),
-			'highlight-and-share',
-			'has-facebook',
-			array(
-				'label_for' => 'hightlight-and-share-facebook-api',
-				'desc'      => __( 'A Facebook App ID allows you to highlight text and share it.', 'highlight-and-share' ),
-			)
-		);
-
-		add_settings_field(
-			'hightlight-and-share-shortlink-enable',
-			__( 'Shortlinks', 'highlight-and-share' ),
-			array( $this, 'add_settings_field_shortlink_enable' ),
-			'highlight-and-share',
-			'has-shortlink',
-			array(
-				'desc' => __( 'Please decide if you would like to use the default post URL or a shortened version.', 'highlight-and-share' ),
-			)
-		);
-
-		add_settings_field(
-			'hightlight-and-share-js-content',
-			_x( 'jQuery classes', 'Label - Where in the HTML document to search for text to capture', 'highlight-and-share' ),
-			array( $this, 'add_settings_field_js_content' ),
-			'highlight-and-share',
-			'has-advanced',
-			array(
-				'label_for' => 'hightlight-and-share-js-content',
-				'desc'      => __( 'Enter jQuery classes to search for in the HTML.  You must comma-separate classes (e.g., entry-content,post,page).', 'highlight-and-share' ),
-			)
-		);
-
-		add_settings_field(
-			'hightlight-and-share-fa-content',
-			__( 'Font Awesome Classes', 'highlight-and-share' ),
-			array( $this, 'add_settings_field_fa_content' ),
-			'highlight-and-share',
-			'has-advanced',
-			array(
-				'label_for' => 'hightlight-and-share-fa-content',
-				'desc'      => __( 'Enter your own Font Awesome classes for the icons.', 'highlight-and-share' ),
-			)
-		);
-		*/
 	}
 
 	/**
@@ -372,7 +113,13 @@ class Admin {
 	 */
 	public function sanitize_options( $options ) {
 		foreach ( $options as $key => &$option ) {
-			$option = sanitize_text_field( $option );
+			if ( is_array( $option ) ) {
+				foreach ( $option as $option_key => &$option_value ) {
+					$option_value = sanitize_text_field( $option_value );
+				}
+			} else {
+				$option = sanitize_text_field( $option );
+			}
 		}
 		$api_helper = new \PMProEmailOctopus\Includes\API();
 		if ( ! $api_helper->validate_api( $options['api_key'] ) ) {
@@ -392,13 +139,19 @@ class Admin {
 	 *
 	 * @return array EmailOctopus lists.
 	 */
-	private function get_lists() {
+	public function get_lists() {
+		$lists = get_transient( 'pmpro-emailoctopus-lists' );
+		if ( $lists ) {
+			$this->lists = $lists;
+			return $lists;
+		}
 		$options = Options::get_options();
 		if ( empty( $this->lists ) && false === $this->list_check ) {
 			$api_helper = new \PMProEmailOctopus\Includes\API();
 			$lists      = $api_helper->get_lists( $options['api_key'] );
 			if ( ! empty( $lists ) ) {
 				$this->lists = $lists;
+				set_transient( 'pmpro-emailoctopus-lists', $this->lists, 3600 );
 			} else {
 				$this->lists = array();
 			}
@@ -451,7 +204,7 @@ class Admin {
 		$user_lists = $options['user_lists'];
 		$lists      = $this->get_lists();
 		if ( ! empty( $lists ) ) {
-			echo "<select multiple='yes' name=\"pmpro-emailoctopus[users_lists][]\">";
+			echo "<select multiple='yes' name=\"pmpro-emailoctopus[user_lists][]\">";
 			foreach ( $lists['data'] as $list ) {
 				echo "<option value='" . esc_attr( $list['id'] ) . "' ";
 				selected( in_array( $list['id'], $user_lists, true ), true, true );
