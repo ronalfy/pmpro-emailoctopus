@@ -39,7 +39,7 @@ class Options {
 		}
 
 		$defaults = array(
-			'api_key'        => '',
+			'api_key' => '',
 		);
 
 		if ( empty( $options ) || count( $options ) < count( $defaults ) ) {

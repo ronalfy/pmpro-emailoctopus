@@ -58,6 +58,7 @@ class Admin {
 	 */
 	public function init_admin_settings() {
 		$args = array(
+			'sanitize_callback' => array( $this, 'sanitize_options' ),
 		);
 		register_setting(
 			'pmpro-emailoctopus',
@@ -341,6 +342,28 @@ class Admin {
 			)
 		);
 		*/
+	}
+
+	/**
+	 * Sanitize the API options.
+	 *
+	 * @param array $options Options to sanitize and check.
+	 */
+	public function sanitize_options( $options ) {
+		foreach ( $options as $key => &$option ) {
+			$option = sanitize_text_field( $option );
+		}
+		$api_helper = new \PMProEmailOctopus\Includes\API();
+		if ( ! $api_helper->validate_api( $options['api_key'] ) ) {
+			add_settings_error(
+				'pmpro-emailoctopus-api-key',
+				'pmppro-emailoctopus-api-error',
+				__( 'The API key is not valid.', 'pmpro-emailoctopus' ),
+				'error'
+			);
+			return array();
+		}
+		return $options;
 	}
 
 	/**
