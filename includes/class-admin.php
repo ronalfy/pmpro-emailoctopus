@@ -15,6 +15,20 @@ use PMProEmailOctopus\Includes\Options as Options;
 class Admin {
 
 	/**
+	 * Store the lists for later use.
+	 *
+	 * @var array $lists EmailOctopus lists.
+	 */
+	private $lists = array();
+
+	/**
+	 * Whether we've checked for lists already.
+	 *
+	 * @var bool $list_check false if not checked, true if it has.
+	 */
+	private $list_check = false;
+
+	/**
 	 * Class Constructor.
 	 */
 	public function __construct() {
@@ -66,8 +80,8 @@ class Admin {
 			$args
 		);
 		add_settings_section(
-			'pmpro-emailoctopus-api-key',
-			_x( 'EmailOctopus API Key', 'plugin settings heading', 'pmpro-emailoctopus' ),
+			'pmpro-emailoctopus-general',
+			_x( 'General Settings', 'plugin settings heading', 'pmpro-emailoctopus' ),
 			array( $this, 'settings_section' ),
 			'pmpro-emailoctopus'
 		);
@@ -155,11 +169,18 @@ class Admin {
 			__( 'Enter your EmailOctopus API Key', 'pmpro-emailoctopus' ),
 			array( $this, 'add_settings_field_api_key' ),
 			'pmpro-emailoctopus',
-			'pmpro-emailoctopus-api-key',
+			'pmpro-emailoctopus-general',
 			array(
 				'desc'      => __( 'You can find your API key in your EmailOctopus account.', 'pmpro-emailoctopus' ),
 				'label_for' => 'emailoctopus-api-key',
 			)
+		);
+		add_settings_field(
+			'pmpro-emailoctopus-user-lists',
+			__( 'Non-member Users', 'pmpro-emailoctopus' ),
+			array( $this, 'add_settings_field_output_lists' ),
+			'pmpro-emailoctopus',
+			'pmpro-emailoctopus-general'
 		);
 		/*
 		add_settings_field(
@@ -367,6 +388,26 @@ class Admin {
 	}
 
 	/**
+	 * Retrieve EmailOctopus lists.
+	 *
+	 * @return array EmailOctopus lists.
+	 */
+	private function get_lists() {
+		$options = Options::get_options();
+		if ( empty( $this->lists ) && false === $this->list_check ) {
+			$api_helper = new \PMProEmailOctopus\Includes\API();
+			$lists      = $api_helper->get_lists( $options['api_key'] );
+			if ( ! empty( $lists ) ) {
+				$this->lists = $lists;
+			} else {
+				$this->lists = array();
+			}
+		}
+		$this->list_check = true;
+		return $this->lists;
+	}
+
+	/**
 	 * Output options page HTML.
 	 *
 	 * Output option page HTML and fields/sections.
@@ -398,6 +439,28 @@ class Admin {
 		$options = Options::get_options();
 		printf( '<p>%s</p>', esc_html( $args['desc'] ) );
 		printf( '<input id="%s" class="regular-text" type="text" name="pmpro-emailoctopus[api_key]" value="%s" />', esc_attr( $args['label_for'] ), esc_attr( $options['api_key'] ) );
+	}
+
+	/**
+	 * Add an list field to the settings.
+	 *
+	 * @param array $args Setting arguments.
+	 */
+	public function add_settings_field_output_lists( $args = array() ) {
+		$options    = Options::get_options();
+		$user_lists = $options['user_lists'];
+		$lists      = $this->get_lists();
+		if ( ! empty( $lists ) ) {
+			echo "<select multiple='yes' name=\"pmpro-emailoctopus[users_lists][]\">";
+			foreach ( $lists['data'] as $list ) {
+				echo "<option value='" . esc_attr( $list['id'] ) . "' ";
+				selected( in_array( $list['id'], $user_lists, true ), true, true );
+				echo '>' . esc_html( $list['name'] ) . '</option>';
+			}
+			echo '</select>';
+		} else {
+			esc_html_e( 'No lists were found', 'pmpro-emailoctopus' );
+		}
 	}
 
 	/**

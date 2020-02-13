@@ -47,8 +47,34 @@ class API {
 		return true;
 	}
 
+	/**
+	 * Retrieve lists from the EmailOctopus API
+	 *
+	 * @param string $api_key The EmailOctopus API Key.
+	 *
+	 * @return mixed false if valid, object if not.
+	 */
 	public function get_lists( $api_key ) {
-
+		$request_url = add_query_arg(
+			array(
+				'api_key' => $api_key,
+				'limit'   => 100,
+				'page'    => 1,
+			),
+			$this->api_url . 'lists'
+		);
+		$response    = wp_remote_get( $request_url );
+		if ( is_wp_error( $response ) ) {
+			return false;
+		}
+		$response_body = json_decode( wp_remote_retrieve_body( $response ), true );
+		if ( isset( $response_body['error'] ) ) {
+			return false;
+		}
+		if ( empty( $response_body ) ) {
+			return false;
+		}
+		return $response_body;
 	}
 
 }
